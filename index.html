@@ -66,6 +66,15 @@
             background: #45a049;
             transform: scale(1.02);
         }
+        .gender-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        .gender-btn {
+            width: auto;
+            padding: 12px 30px;
+        }
         .back-btn {
             background: #ff9800;
         }
@@ -103,6 +112,7 @@
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: all 0.2s;
         }
         .exercise-header {
             display: flex;
@@ -166,6 +176,7 @@
             border-radius: 20px;
             margin-top: 15px;
             font-size: 14px;
+            color: #2c3e50;
             border-left: 5px solid #4CAF50;
         }
         .add-exercise, .save-btn {
@@ -202,6 +213,10 @@
             overflow: auto;
             text-align: center;
         }
+        .modal-content img {
+            max-width: 100%;
+            border-radius: 20px;
+        }
         .close-modal {
             background: #ff9800;
             width: auto;
@@ -209,12 +224,12 @@
         }
         @media (max-width: 600px) {
             body { padding: 10px; }
+            .gender-btn { padding: 10px 20px; }
         }
     </style>
 </head>
 <body>
 <div class="app-container" id="app">
-    <!-- Экран входа/регистрации -->
     <div id="authScreen">
         <h2>🔐 Вход / Регистрация</h2>
         <div class="form-group">
@@ -229,7 +244,6 @@
         <button id="registerBtn" class="back-btn">Зарегистрироваться</button>
     </div>
 
-    <!-- Экран выбора пола -->
     <div id="genderScreen" style="display: none;">
         <h2>👋 Привет! Выбери свой пол</h2>
         <div class="gender-buttons">
@@ -238,7 +252,6 @@
         </div>
     </div>
 
-    <!-- Экран анкеты -->
     <div id="profileScreen" style="display: none;">
         <h2>📝 Расскажи о себе</h2>
         <div class="form-group">
@@ -274,7 +287,6 @@
         <button id="backToGenderBtn" class="back-btn">⬅ Назад (сменить пол)</button>
     </div>
 
-    <!-- Главное приложение -->
     <div id="mainApp" style="display: none;">
         <div class="top-bar">
             <h1>🏋️ Спок Тренировки</h1>
@@ -325,7 +337,6 @@
     let currentMuscle2 = 'triceps';
     let exercises = [];
 
-    // Библиотеки упражнений (как раньше)
     const maleLibrary = {
         chest: ["Жим штанги лёжа", "Жим гантелей лёжа", "Разводка гантелей", "Отжимания на брусьях", "Жим в хаммере"],
         back: ["Тяга верхнего блока", "Тяга штанги в наклоне", "Горизонтальная тяга", "Подтягивания", "Тяга гантели одной рукой"],
@@ -611,7 +622,6 @@
         document.getElementById('mainApp').style.display = 'none';
     }
 
-    // Регистрация и вход
     document.getElementById('loginBtn').addEventListener('click', () => {
         const login = document.getElementById('login').value.trim();
         const password = document.getElementById('password').value;
@@ -702,7 +712,6 @@
         input.addEventListener('input', () => { if (input.value < 0) input.value = 0; });
     });
 
-    // Старт: показываем экран входа
     document.getElementById('authScreen').style.display = 'block';
 </script>
 </body>
